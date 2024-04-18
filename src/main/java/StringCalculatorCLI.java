@@ -37,6 +37,9 @@ public class StringCalculatorCLI {
 
             // Process the input
             if(input.contains("scalc '")){
+                if(input.contains("//")){
+                    input += scanner.nextLine();
+                }
                input = input.substring(7);
                input = input.substring(0,input.length()-1);
             }

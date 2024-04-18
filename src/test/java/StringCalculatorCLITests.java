@@ -82,7 +82,7 @@ public class StringCalculatorCLITests {
 
     @Test
     public void testOwnSeparator() {
-        String input = "scalc '//;1;2;3'\nexit";
+        String input = "scalc '//;\n1;2;3'\nexit";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         OutputStream outputStream = new ByteArrayOutputStream();
