@@ -23,7 +23,7 @@ public class StringCalculatorCLI {
         Scanner scanner = new Scanner(inputStream);
         PrintStream out = new PrintStream(outputStream);
 
-        //TODO print welcome message
+        out.println("Welcome");
 
         StringCalculator calculator = new StringCalculator();
         // Loop until the user inputs "exit"
@@ -36,10 +36,13 @@ public class StringCalculatorCLI {
             }
 
             // Process the input
-            //TODO Handle "scalc"-formatted string
+            if(input.contains("scalc '")){
+               input = input.substring(7);
+               input = input.substring(0,input.length()-1);
+            }
             var result = calculator.add(input);
 
-            out.println(result);
+            out.println("The result is "+result);
         }
 
         scanner.close();
