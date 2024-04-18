@@ -18,7 +18,7 @@ public class StringCalculator {
         if(numbers.contains("//")){
 
             String separator = numbers.charAt(2) + "";
-            numbers = numbers.substring(3);
+            numbers = numbers.substring(3).replace("\n","");
             numbersArray = numbers.split(separator);
         }
         else{
