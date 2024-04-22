@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class StringCalculator {
 
     private final Logger logger;
@@ -16,10 +19,24 @@ public class StringCalculator {
             return 0;
         }
         if(numbers.contains("//")){
+            if(numbers.contains("[") && numbers.contains("]")){
+                String chars = numbers.substring(3,numbers.lastIndexOf("]"));
 
-            String separator = numbers.charAt(2) + "";
-            numbers = numbers.substring(3).replace("\n","");
-            numbersArray = numbers.split(separator);
+                String[] separators  = chars.split("]\\[");
+
+                for(String separator : separators){
+                    numbers = numbers.replace(separator, ",");
+                }
+                numbers = numbers.substring(numbers.lastIndexOf("]")).substring(1);
+                numbersArray = numbers.split(",");
+
+               // throw new RuntimeException(Arrays.toString(separators));
+            }
+            else {
+                String separator = numbers.charAt(2) + "";
+                numbers = numbers.substring(3).replace("\n", "");
+                numbersArray = numbers.split(separator);
+            }
         }
         else{
             numbersArray = numbers.split("[,\n]");

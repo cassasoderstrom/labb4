@@ -81,7 +81,7 @@ public class StringCalculatorCLITests {
     }
 
     @Test
-    public void testOwnSeparator() {
+    public void testOwnSimpleSeparator() {
         String input = "scalc '//;\n1;2;3'\nexit";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
@@ -92,6 +92,22 @@ public class StringCalculatorCLITests {
         calculator.run();
 
         assertTrue(outputStream.toString().contains("The result is 6"+System.lineSeparator()));
+
+    }
+
+    @Test
+    public void testOwnComplexSeparator() {
+        String input = "scalc '//[%%%][***]\n1%%%2***3'\nexit";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI();
+        calculator.run();
+
+        assertTrue(outputStream.toString().contains("The result is 6"+System.lineSeparator()));
+
 
     }
 }
